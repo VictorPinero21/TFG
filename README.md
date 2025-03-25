@@ -1,6 +1,3 @@
-Thought for 3 seconds### 📊 FinViz - Visualización de Finanzas Personales
-
-
 
 
 
