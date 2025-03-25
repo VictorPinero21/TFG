@@ -63,7 +63,7 @@ npm run dev
 
 ## 👨‍💻 Autor
 
-Este proyecto es desarrollado como Trabajo Fin de Grado por [Tu Nombre](https://github.com/tu-usuario).
+Este proyecto es desarrollado como Trabajo Fin de Grado por [Victor Pinero Ollero](https://github.com/tu-usuario).
 
 ## 📄 Licencia
 
