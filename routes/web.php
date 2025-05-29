@@ -1,8 +1,10 @@
 <?php
 
+use Inertia\Inertia;
 use App\Http\Controllers\Auth\GoogleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\FinancialAssistantController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,3 +26,12 @@ Route::get('login/google/callback', [GoogleController::class, 'handleGoogleCallb
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+
+//RUTA PARA EL CONTROLADOR DE LA IA ASSISTANT
+Route::post('/financial-assistant', [FinancialAssistantController::class, 'respond'])->name('financial.assistant');
+
+
+Route::get('/asistente', fn () => Inertia::render('FinancialAssistant'))->name('assistant');
+
+
