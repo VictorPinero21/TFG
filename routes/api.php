@@ -1,12 +1,10 @@
 <?php
 
-use App\Http\Controllers\ChatbotController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\FinanceController;
 
-
-Route::post('/chatbot', [ChatbotController::class, 'handle']);
-Route::post('/reset', function () {
-    session()->forget('prompt_count');
-    return response()->json(['message' => 'Conversación reiniciada.']);
+Route::get('/expenses', [FinanceController::class, 'expenses']);
+Route::get('/incomes', [FinanceController::class, 'incomes']);
+Route::get('/test', function () {
+    return response()->json(['message' => 'API funcionando']);
 });

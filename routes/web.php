@@ -1,63 +1,56 @@
 <?php
 
+use App\Http\Controllers\ChatbotController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Api\FinanceController;
+use App\Http\Controllers\IA\ChatController;
+use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\SubscriptionPlanController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\Auth\GoogleController;
-use App\Http\Controllers\Auth\LoginController;
-use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\ChatController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use Illuminate\Http\Request;
-use App\Http\Controllers\ChatbotController;
+
 Route::get('/', function () {
-
-    return Inertia::render('Dashboard/DashboardFinanciero');
+    return Inertia::render('Dashboard', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
-
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth'])->name('dashboard');
+    return Inertia::render('Dashboard/Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-//Auth 
-Route::get('/login', [LoginController::class, 'show'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/login/google', fn() => Socialite::driver('google')->redirect());
-Route::get('/login/google/callback', [GoogleController::class, 'handleGoogleCallback']);
-Route::inertia('/register', 'Register')->name('register');
-Route::get('/forgot-password', function () {
-    return Inertia::render('ForgotPassword');
-})->name('password.request');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 
-  
- 
-    Route::post('/api/password/reset-link', [ForgotPasswordController::class, 'sendResetLink']);
-    
-//CHATHPT
-Route::get('/chat', function () {
+Route::get('/expenses', [FinanceController::class, 'expenses']);
+Route::get('/incomes', [FinanceController::class, 'incomes']);
+
+Route::get('/chatbot', function () {
     return Inertia::render('chat-longchain', [
-        'csrf_token' => csrf_token(),
+        'csrf_token' => csrf_token()
     ]);
 });
 
-Route::post('/chatbot', [ChatbotController::class, 'handle']);
-Route::post('/reset', function () {
-    session()->forget('prompt_count');
-    return response()->json(['message' => 'Conversación reiniciada.']);
+Route::middleware('auth')->post('/chatbot', [ChatController::class, 'query']);
+Route::get('login/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('login/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+
+
+
+
+Route::get('/subscription-plans', [SubscriptionPlanController::class, 'index'])->name('subscription-plans.index');
+
+Route::get('pruebass', function () {
+    return Inertia::render('Auth/VerifyEmail');
 });
 
-
-Route::prefix('api')->group(function () {
-    require base_path('routes/api.php');
-});
-
-Route::get('/settings' , function () {
-    return Inertia::render('user-settings', [
-      'User_imagen' => 'https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcS7dzPejIO0qBsU5H9EyPloHi-x5MuT6r2GLR8vm7jsFP8AkihXc0L0jmKqY2zDRlfzsHxKnuBu6U3hcsk'
-    ]);
-});
-
-
+require __DIR__.'/auth.php';

@@ -25,10 +25,11 @@ class GoogleController extends Controller
                 [
                     'name' => $user->name,
                     'email' => $user->email,
-                    // Puedes dejar la password null si solo quieres login por Google
-                    'password' => bcrypt(Str::random(16)),
+                    'avatar' => $user->avatar,  // nuevo campo en tabla users
+                    'email_verified_at' => now(), // marca como verificado automáticamente
                 ]
             );
+            
 
             Auth::login($authUser, true);
 

@@ -3,26 +3,25 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
+use App\Models\Expense;
+use App\Models\Income;
+use Inertia\Inertia;
 
 class FinanceController extends Controller
 {
-    public function monthlySummary(): JsonResponse
+    public function expenses()
     {
-        // Datos ficticios de ejemplo
-        $data = [
-            'total_gastos' => 1200,
-            'total_ingresos' => 1500,
-            'categoria_mayor_gasto' => 'Comida',
-            'ahorro_mes' => 300,
-            'detalle_categorias' => [
-                'Comida' => 600,
-                'Transporte' => 200,
-                'Ocio' => 400,
-            ],
-        ];
+        return Inertia::render('Dashboard/DashboardFinanciero', [
+            'expenses' => Expense::all(),
+        ]);
+        
+    }
+  
 
-        return response()->json($data);
+    public function incomes()
+    {
+        return Inertia::render('Dashboard/DashboardFinanciero', [
+            'incomes' => Income::all(),
+        ]);
     }
 }

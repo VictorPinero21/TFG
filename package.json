@@ -6,24 +6,32 @@
         "dev": "vite"
     },
     "devDependencies": {
+        "@headlessui/react": "^2.0.0",
+        "@inertiajs/react": "^2.0.0",
+        "@tailwindcss/forms": "^0.5.3",
         "@tailwindcss/vite": "^4.1.7",
-        "@vitejs/plugin-react": "^4.5.0",
-        "autoprefixer": "^10.4.21",
+        "@vitejs/plugin-react": "^4.2.0",
+        "autoprefixer": "^10.4.12",
         "axios": "^1.8.2",
         "concurrently": "^9.0.1",
         "laravel-vite-plugin": "^1.2.0",
-        "postcss": "^8.5.3",
-        "tailwindcss": "^4.1.7",
+        "postcss": "^8.4.31",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "tailwindcss": "^3.2.1",
         "vite": "^6.2.4"
     },
     "dependencies": {
         "@inertiajs/inertia": "^0.11.1",
+        "@inertiajs/inertia-react": "^0.8.1",
         "@inertiajs/progress": "^0.1.2",
         "@inertiajs/react": "^2.0.11",
         "chart.js": "^4.4.9",
+        "jspdf": "^3.0.1",
         "lucide-react": "^0.511.0",
         "react": "^18.3.1",
         "react-chartjs-2": "^5.3.0",
-        "react-dom": "^18.3.1"
+        "react-dom": "^18.3.1",
+        "recharts": "^2.15.3"
     }
 }
