@@ -51,7 +51,7 @@ export default function Layout({ children }) {
   const navigation = [
     {
       title: "OVERVIEW",
-      items: [{ name: "Dashboard", href: "/", icon: Home }],
+      items: [{ name: "Dashboard", href: "/dashboard", icon: Home }],
     },
     {
       title: "FINANCE",

@@ -9,9 +9,11 @@ use App\Http\Controllers\SubscriptionPlanController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\NewsletterController;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('/', function () {
-    return Inertia::render('Dashboard', [
+    return Inertia::render('Home', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -19,9 +21,16 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard/Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
+
+
+
+Route::get('/dashboard', [FinanceController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/expenses', [FinanceController::class, 'expenses'])->middleware(['auth', 'verified'])->name('expenses');
+Route::get('/incomes', [FinanceController::class, 'incomes'])->middleware(['auth', 'verified'])->name('incomes');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -47,10 +56,13 @@ Route::get('login/google/callback', [GoogleController::class, 'handleGoogleCallb
 
 
 
+
 Route::get('/subscription-plans', [SubscriptionPlanController::class, 'index'])->name('subscription-plans.index');
 
-Route::get('pruebass', function () {
-    return Inertia::render('Auth/VerifyEmail');
-});
+Route::get('/download-docs', function () {
+    return Storage::download('public/docs/FinTrackDocs.pdf');
+})->name('download.docs');
+
+
 
 require __DIR__.'/auth.php';

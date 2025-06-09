@@ -2,7 +2,7 @@
 
 return [
 
-    'default' => env('MAIL_MAILER', 'smtp'),
+    'default' => env('MAIL_MAILER', 'resend'),
 
     'mailers' => [
         'smtp' => [
@@ -14,6 +14,9 @@ return [
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'auth_mode' => null,
+        ],
+        'resend' => [
+            'transport' => 'resend',
         ],
 
         'ses' => [

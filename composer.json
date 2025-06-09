@@ -17,6 +17,8 @@
         "laravel/tinker": "^2.10.1",
         "openai-php/client": "^0.13.0",
         "openai-php/laravel": "^0.13.0",
+        "resend/resend-laravel": "^0.19.0",
+        "resend/resend-php": "^0.18.0",
         "tightenco/ziggy": "^2.0"
     },
     "require-dev": {
