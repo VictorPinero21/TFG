@@ -21,11 +21,11 @@ class OpenAIService
         $content = $response->json()['choices'][0]['message']['content'] ?? '';
 
         if (!$response->ok()) {
-            // Opcional: Loguear el error
+            //Esto no va , mirar el log 
             Log::error('Fallo al generar newsletter', ['response' => $response->body()]);
             return "<p>Error al generar el contenido del newsletter.</p>";
         }
-        // Return the content wrapped in a basic HTML structure
+       //HTML del email , cambiar luego 
         return "
             <html>
             <head>

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Inertia\Inertia;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -25,17 +25,18 @@ class GoogleController extends Controller
                 [
                     'name' => $user->name,
                     'email' => $user->email,
-                    'avatar' => $user->avatar,  // nuevo campo en tabla users
-                    'email_verified_at' => now(), // marca como verificado automáticamente
+                    'avatar' => $user->avatar,  
+                    'email_verified_at' => now(), 
                 ]
             );
             
 
             Auth::login($authUser, true);
 
-            return redirect('/dashboard'); // Ajusta la ruta según tu app
+          return redirect()->route('dashboard');
+
         } catch (\Exception $e) {
-            // Manejo de error, por ejemplo redirigir al login con mensaje
+          
             return redirect('/login')->withErrors(['login' => 'Error autenticando con Google']);
         }
     }

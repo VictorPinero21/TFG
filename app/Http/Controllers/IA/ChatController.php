@@ -63,7 +63,7 @@ Además:
 Cuando el usuario te haga preguntas, responde con base en estos datos y consejos.
 EOT;
 
-        // Armar array de mensajes para OpenAI, empezando por sistema con prompt
+      
         $chatMessages = [
             ['role' => 'system', 'content' => $prompt]
         ];
@@ -77,13 +77,13 @@ EOT;
             ];
         }
 
-        // Finalmente agregar el mensaje actual del usuario
+
         $chatMessages[] = [
             'role' => 'user',
             'content' => $message,
         ];
 
-        // Llamar a la API OpenAI
+        // Llamar a la API de OpenAI
         $response = OpenAI::chat()->create([
             'model' => 'gpt-3.5-turbo',
             'messages' => $chatMessages,

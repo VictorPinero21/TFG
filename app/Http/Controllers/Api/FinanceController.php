@@ -14,7 +14,7 @@ class FinanceController extends Controller
     // Dashboard general con gastos e ingresos para comparar
     public function dashboard(Request $request)
     {
-        $month = $request->input('month'); // Ejemplo: "2025-06"
+        $month = $request->input('month'); 
     
         if ($month) {
             $start = Carbon::parse($month . '-01')->startOfMonth();

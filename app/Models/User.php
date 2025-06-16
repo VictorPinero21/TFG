@@ -25,7 +25,7 @@ class User extends Authenticatable
         'age',
         'phone',
         'avatar',
-        // otros campos...
+      
     ];
     
 

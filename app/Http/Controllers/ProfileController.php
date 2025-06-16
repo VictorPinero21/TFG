@@ -31,10 +31,10 @@ class ProfileController extends Controller
     {
         $user = $request->user();
     
-        // Validación segura y completa
+      
         $validated = $request->validated();
     
-        // Conversión segura del checkbox a booleano
+       
         $validated['newsletter'] = $request->boolean('newsletter');
     
         // Asignar los datos validados
@@ -47,7 +47,7 @@ class ProfileController extends Controller
             'newsletter' => $validated['newsletter'],
         ]);
     
-        // Subida y almacenamiento del avatar
+     
         if ($request->hasFile('avatar')) {
             $avatarPath = $request->file('avatar')->store('avatars', 'public');
             $user->avatar = $avatarPath;
@@ -58,7 +58,7 @@ class ProfileController extends Controller
             $user->email_verified_at = null;
         }
     
-        // Guardar cambios
+  
         $user->save();
     
         return Redirect::route('profile.edit')->with('status', 'profile-updated');

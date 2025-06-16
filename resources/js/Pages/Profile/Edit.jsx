@@ -6,7 +6,7 @@ import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import DeleteUserForm from './Partials/DeleteUserForm';
 
 export default function Edit({ mustVerifyEmail, status, authUser, plans }) {
-  const [tab, setTab] = useState('profile'); // 'profile' | 'password' | 'delete'
+  const [tab, setTab] = useState('profile'); 
 
   const { data, setData, patch, errors, processing, reset } = useForm({
     subscription_plan_id: authUser.subscription_plan_id || null,
@@ -85,10 +85,10 @@ export default function Edit({ mustVerifyEmail, status, authUser, plans }) {
           </button>
         </nav>
 
-        {/* Contenido */}
+   
         {tab === 'profile' && (
           <form onSubmit={submit} className="space-y-6">
-            {/* Campos básicos */}
+        
             <div>
               <label htmlFor="name" className="block font-medium text-gray-700">Nombre</label>
               <input
@@ -141,7 +141,7 @@ export default function Edit({ mustVerifyEmail, status, authUser, plans }) {
               {errors.phone && <p className="text-red-600 text-sm mt-1">{errors.phone}</p>}
             </div>
 
-            {/* Select tipo de suscripción (solo lectura) */}
+         
             <div>
               <label htmlFor="subscription_plan_id" className="block font-medium text-gray-700 mb-1">
                 Tipo de suscripción
@@ -169,7 +169,7 @@ export default function Edit({ mustVerifyEmail, status, authUser, plans }) {
               )}
             </div>
 
-            {/* Switch newsletter */}
+     
             <div className="flex items-center space-x-4">
               <label htmlFor="newsletter" className="font-medium text-gray-700 cursor-pointer select-none">
                 Quiero recibir el newsletter

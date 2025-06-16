@@ -1,5 +1,4 @@
-// src/pages/Home.jsx
-
+"use client"
 import React from 'react';
 
 export default function Home() {
@@ -43,30 +42,45 @@ export default function Home() {
                     <div className="bg-gradient-to-tr from-pink-700 to-pink-900 rounded-xl shadow-2xl p-6 text-white">
                         <h3 className="text-2xl font-bold mb-4">¿Qué ofrece FinTrack?</h3>
                         <ul className="space-y-4 text-pink-300">
-                            <li className="flex items-center gap-3">
-                                <svg className="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M9 12l2 2l4 -4" /></svg>
-                                Seguimiento automático de gastos e ingresos
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <svg className="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M12 20l9-5-9-5-9 5 9 5z" /></svg>
-                                Análisis financiero inteligente con IA
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <svg className="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><line x1="12" y1="6" x2="12" y2="12" /><line x1="12" y1="18" x2="12.01" y2="18" /></svg>
-                                Newsletter semanal con novedades y consejos exclusivos
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <svg className="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M21 12v7a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-7" /><path d="M7 10l5 5l5 -5" /></svg>
-                                Chatbot IA para responder tus dudas financieras al instante
-                            </li>
+                            {[
+                                {
+                                    icon: "M9 12l2 2l4 -4",
+                                    text: "Seguimiento automático de gastos e ingresos",
+                                },
+                                {
+                                    icon: "M12 20l9-5-9-5-9 5 9 5z",
+                                    text: "Análisis financiero inteligente con IA",
+                                },
+                                {
+                                    icon: "M12 12m-10 0a10 10 0 1 0 20 0a10 10 0 1 0 -20 0m0-6v6m0 6h.01",
+                                    text: "Newsletter semanal con novedades y consejos exclusivos",
+                                },
+                                {
+                                    icon: "M21 12v7a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-7m7-2l5 5l5 -5",
+                                    text: "Chatbot IA para responder tus dudas financieras al instante",
+                                },
+                            ].map((item, index) => (
+                                <li key={index} className="flex items-center gap-3">
+                                    <svg
+                                        className="w-6 h-6 text-pink-400"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path d={item.icon} />
+                                    </svg>
+                                    {item.text}
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>
             </main>
 
-            <footer className="text-center py-6 text-pink-500 text-sm select-none">
-                &copy; 2025 FinTrack - Todos los derechos reservados.
-            </footer>
+           
         </div>
     );
 }
